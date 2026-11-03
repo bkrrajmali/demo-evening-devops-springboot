@@ -37,7 +37,7 @@ stages {
             SCANNER_HOME = tool 'sonar-scanner'
         }
         steps {
-            withSonartQubeEnv('sonar-server') {
+            withSonarQubeEnv('sonar-server') {
                 sh ''' ${SCANNER_HOME}/bin/sonar-scanner \
                 -Dsonar.organization=bkrrajmali \
                 -Dsonar.projectKey=myspringbootapp \
