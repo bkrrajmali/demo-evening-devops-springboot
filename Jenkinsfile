@@ -32,5 +32,21 @@ stages {
             sh 'mvn package'
         }
       }
+      stage ('Sonar Analysis') {
+        environment {
+            SCANNER_HOME = tool 'sonar-scanner'
+        }
+        steps {
+            withSonartQubeEnv('sonar-server') {
+                sh ''' ${SCANNER_HOME}/bin/sonar-scanner \
+                -Dsonar.organization=bkrrajmali \
+                -Dsonar.projectKey=myspringbootapp \
+                -Dsonar.projectName=springbootapp \
+                -Dsonar.sources=src/main/java \
+                -Dsonar.java.binaries=target/classes
+                '''
+            }
+        }
+      }
    }
 }
