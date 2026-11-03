@@ -48,5 +48,12 @@ stages {
             }
         }
       }
+      stage ('Docker Build') {
+        steps {
+            script {
+              sh 'docker build -t petclinic:v1 .'
+            }
+        }
+      }
    }
 }
