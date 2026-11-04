@@ -68,5 +68,15 @@ stages {
             }
         }
       }
+      stage ('Deploy To EKS') {
+        steps {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-jenkins']]) {
+                sh '''
+                aws eks update-kubeconfig --region ap-south-1 --name practice-eks
+                kubectl apply -f k8s/deployment.yaml
+                '''
+            }
+         }
+      }
    }
 }
