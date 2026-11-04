@@ -56,17 +56,17 @@ stages {
             }
         }
       }
-      stage ('Login to AWS and Push Image to ECR') {
-        steps {
-            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-jenkins']]) {
-                sh '''
-                aws ecr get-login-password --region ap-south-1 | \
-                docker login --username AWS --password-stdin 175157388210.dkr.ecr.ap-south-1.amazonaws.com
-                docker tag petclinic:v1 175157388210.dkr.ecr.ap-south-1.amazonaws.com/petclinic:latest
-                docker push 175157388210.dkr.ecr.ap-south-1.amazonaws.com/petclinic:latest
-                '''
-            }
-        }
-      }
+    //   stage ('Login to AWS and Push Image to ECR') {
+    //     steps {
+    //         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-jenkins']]) {
+    //             sh '''
+    //             aws ecr get-login-password --region ap-south-1 | \
+    //             docker login --username AWS --password-stdin 175157388210.dkr.ecr.ap-south-1.amazonaws.com
+    //             docker tag petclinic:v1 175157388210.dkr.ecr.ap-south-1.amazonaws.com/petclinic:latest
+    //             docker push 175157388210.dkr.ecr.ap-south-1.amazonaws.com/petclinic:latest
+    //             '''
+    //         }
+    //     }
+    //   }
    }
 }
